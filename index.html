@@ -137,19 +137,70 @@
     .tianjin-detail-link{transition:none}
     @media(max-width:680px){.site-notice{top:16px;left:16px;max-width:calc(100% - 32px);padding:9px 11px;font-size:11px}.intro-welcome{padding-top:100px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.info-tile,.info-image-link{transition:none}}
+
+    /* Campus life additions: local review edition. */
+    .site-notice{max-width:calc(100% - 180px)}
+    .site-notice small{display:block;margin-top:5px;color:var(--muted);font-size:12px;font-weight:400;letter-spacing:0;line-height:1.65}
+    .author-credit{position:absolute;top:30px;right:30px;color:var(--muted);font-size:16px;line-height:1.65;letter-spacing:.08em;text-align:right}
+    .author-credit span{display:block}
+    #north-campus .page-inner{padding:84px 0 62px}
+    .north-guide-scroll{width:100%;max-height:calc(100svh - 146px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,211,92,.6) transparent;padding:4px 10px 14px 4px}
+    .north-guide{display:grid;grid-template-columns:minmax(240px,.9fr) minmax(0,1.5fr);gap:24px;align-items:center}
+    #north-campus .location-copy{width:100%;padding:32px 26px;transform:none}
+    #north-campus .location-copy h2{font-size:clamp(36px,4vw,60px)}
+    #north-campus .location-copy p{font-size:16px}
+    .campus-life-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .campus-life-card{padding:24px;border-radius:14px;border:1px solid rgba(255,255,255,.22);background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.32);backdrop-filter:blur(10px)}
+    .campus-life-card h3{margin:0 0 24px;color:var(--white);font-size:clamp(23px,2.4vw,32px)}
+    .campus-life-card .card-link{border-radius:6px;font-size:15px}
+    .page-north-detail{background-image:url('./campus-gate.png')}
+    .life-panel{max-height:calc(100svh - 160px);overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,211,92,.6) transparent}
+    .life-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+    .life-gallery.single{grid-template-columns:minmax(0,1fr)}
+    .life-gallery figure{min-width:0;margin:0}
+    .life-gallery .info-image-link{display:block;margin:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden}
+    .life-gallery img{width:100%;height:240px;max-height:38svh;object-fit:contain;border-radius:0}
+    .life-gallery figcaption{margin-top:10px;font-size:13px;line-height:1.6;color:var(--muted)}
+    a:focus-visible,.north-guide-scroll:focus-visible,.life-panel:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+    @media(max-width:900px){.north-guide{grid-template-columns:1fr;gap:18px}#north-campus .location-copy{padding:22px 24px}#north-campus .location-copy h2{font-size:34px}#north-campus .location-copy p{margin-bottom:18px}.campus-life-card{padding:20px}.campus-life-card h3{margin-bottom:18px}}
+    @media(max-width:680px){.site-notice{top:46px;max-width:calc(100% - 32px)}.site-notice small{font-size:10px}.author-credit{top:18px;right:18px;font-size:11px}.intro-welcome{padding-top:144px}.campus-life-grid{gap:12px}.campus-life-card{padding:16px 12px}.campus-life-card h3{font-size:22px}.campus-life-card .card-link{font-size:12px;padding:14px 5px}.life-gallery{grid-template-columns:1fr}.life-gallery img{height:220px;max-height:34svh}.life-panel{max-height:calc(100svh - 154px)}}
+    .intro-welcome{padding-bottom:235px}
+    .welcome-footer{position:absolute;right:42px;bottom:62px;width:min(460px,calc(100% - 48px));text-align:right;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+    .welcome-footer .portal-link{position:static;display:inline-block;margin-bottom:12px}
+    .welcome-contact{margin:0;color:var(--muted);font-size:13px;line-height:1.9;letter-spacing:0}
+    .welcome-contact a{color:var(--yellow);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+    .welcome-contact .contact-line{display:block}
+    .south-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
+    #south-campus .location-copy{width:100%;transform:none;padding:32px 28px}
+    #south-campus .location-copy h2{font-size:clamp(34px,4vw,60px)}
+    .south-note{padding:clamp(26px,4vw,46px);border:1px solid rgba(255,255,255,.22);border-radius:20px;background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.32);backdrop-filter:blur(10px)}
+    .south-note h3{margin:0 0 20px;color:var(--yellow);font-size:clamp(28px,3vw,42px)}
+    .south-note p{margin:0;color:var(--muted);font-size:clamp(14px,1.3vw,17px);line-height:1.95}
+    @media(max-width:680px){.welcome-footer{right:20px;bottom:58px;width:calc(100% - 40px)}.welcome-contact{font-size:12px}.welcome-footer .portal-link{margin-bottom:8px}.south-layout{grid-template-columns:1fr;gap:18px}#south-campus .location-copy{padding:24px}#south-campus .location-copy p{font-size:15px;margin-bottom:20px}.south-note{padding:24px}.south-note h3{margin-bottom:14px}#south-campus .page-inner{padding-bottom:78px}}
+    @media(max-width:680px) and (max-height:650px){.intro-welcome{padding-top:120px;padding-bottom:210px}.intro-welcome .eyebrow{margin-bottom:14px;font-size:10px}.intro-welcome .welcome h1{font-size:42px}.intro-welcome .welcome p:last-child{margin-top:18px;font-size:14px}.welcome-contact{font-size:11px}}
+    .site-notice{max-width:calc(100% - 330px)}
+    @media(max-width:680px){.author-credit{font-size:13px}.site-notice{top:78px;max-width:calc(100% - 32px)}.intro-welcome{padding-top:176px}}
+    @media(max-width:680px) and (max-height:650px){.intro-welcome{padding-top:150px}}
   </style>
 </head>
 <body>
   <section class="intro-stage" id="intro-stage">
     <div class="intro-viewport">
       <div class="intro-layer intro-welcome" id="introWelcome">
-        <p class="site-notice">注意！此网站并非天津美术学院官方网站！</p>
+        <div class="site-notice">注意！此网站并非天津美术学院官方网站！<small>建议使用PC端阅读，或手机使用浏览器打开阅读</small></div>
+        <div class="author-credit"><span>高铭昊-作</span><span>感谢c302全体舍友支持</span></div>
         <div class="welcome">
           <p class="eyebrow">Tianjin Academy of Fine Arts</p>
           <h1><span>TAFA</span>欢迎您</h1>
           <p>在艺术与城市之间，开启你的创作旅程</p>
         </div>
-        <a class="portal-link" href="https://www.tjarts.edu.cn/" target="_blank" rel="noopener noreferrer">点击查看学校官网</a>
+        <div class="welcome-footer">
+          <a class="portal-link" href="https://www.tjarts.edu.cn/" target="_blank" rel="noopener noreferrer">点击查看学校官网</a>
+          <p class="welcome-contact">欢迎指正内容！关于添加新的内容，请发送我的邮箱：
+            <span class="contact-line"><a href="mailto:gaolele2008615@qq.com">gaolele2008615@qq.com</a></span>
+            <span class="contact-line">或者加我微信：<span>gaolele0071</span></span>
+          </p>
+        </div>
         <div class="scroll-tip">向下滚动继续浏览</div>
       </div>
 
@@ -194,37 +245,45 @@
     </div>
     <a class="back-button" href="#intro-stage">返回学校介绍</a>
     <div class="continue-hint">向下继续浏览</div>
-    <div class="page-number">03 / 05</div>
+    <div class="page-number">03 / 22</div>
   </section>
 
   <section class="page page-four optional-page" id="north-campus" hidden>
     <div class="page-inner">
-      <div class="location-content">
+      <div class="north-guide-scroll" tabindex="0" role="region" aria-label="北苑校园生活导航"><div class="location-content north-guide">
         <div class="location-copy">
           <p class="label">NORTH CAMPUS</p>
           <h2>北苑</h2>
           <p>点击下面的按钮查看北苑校区位置。</p>
           <a class="map-link" href="https://cn.bing.com/maps/search?name=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;mepi=0%7E%7EEmbedded%7ELargeMapLink&amp;FORM=MPSRPL&amp;style=r&amp;q=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%BF%97%E6%88%90%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;cp=qhxggpts1992&amp;lvl=16" target="_blank" rel="noopener noreferrer">点击了解校区位置</a>
         </div>
-      </div>
+        <div class="campus-life-grid"><article class="campus-life-card"><h3>关于食堂</h3><a class="card-link" href="#north-canteen" data-open-page="north-canteen">点击了解食堂</a></article>
+<article class="campus-life-card"><h3>关于快递站</h3><a class="card-link" href="#north-parcel" data-open-page="north-parcel">点击了解快递站</a></article>
+<article class="campus-life-card"><h3>关于吃食</h3><a class="card-link" href="#north-food" data-open-page="north-food">点击了解附近美味</a></article>
+<article class="campus-life-card"><h3>关于宿舍</h3><a class="card-link" href="#north-dorm" data-open-page="north-dorm">点击了解宿舍环境</a></article></div>
+      </div></div>
     </div>
     <a class="back-button" href="#campus-select">返回专业查询</a>
-    <div class="page-number">04 / 05</div>
+    <div class="page-number">04 / 22</div>
   </section>
 
   <section class="page page-five optional-page" id="south-campus" hidden>
     <div class="page-inner">
-      <div class="location-content">
+      <div class="location-content south-layout">
         <div class="location-copy">
           <p class="label">SOUTH CAMPUS</p>
           <h2>南苑</h2>
           <p>点击下面的按钮查看南苑校区位置。</p>
           <a class="map-link" href="https://cn.bing.com/maps/search?name=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;mepi=0%7E%7EEmbedded%7ELargeMapLink&amp;FORM=MPSRPL&amp;style=r&amp;ss=id.ypid%3AYNCNRN702NavInfo620019367&amp;q=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;ppois=39.153419494628906_117.19438171386719_%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;cp=qhrwxdtrzn47&amp;lvl=16.2" target="_blank" rel="noopener noreferrer">点击了解校区位置</a>
         </div>
+        <article class="south-note">
+          <h3>信息不详</h3>
+          <p>由于我是北苑的，南苑的许多信息都不了解，欢迎南苑的同学来我邮箱投稿，帮助我完善校园信息，谢谢啦！</p>
+        </article>
       </div>
     </div>
     <a class="back-button" href="#campus-select">返回专业查询</a>
-    <div class="page-number">05 / 05</div>
+    <div class="page-number">05 / 22</div>
   </section>
 
  
@@ -238,11 +297,12 @@
         <a class="info-tile" href="#textbook-page" data-open-page="textbook-page">关于教材</a>
         <a class="info-tile" href="#training-page" data-open-page="training-page">关于军训</a>
         <a class="info-tile" href="#dorm-power-page" data-open-page="dorm-power-page">关于空调及宿舍用电</a>
+        <a class="info-tile" href="#dorm-guide" data-open-page="dorm-guide">关于宿舍</a>
         <a class="info-tile" href="#tianjin-stage" data-open-page="tianjin-stage">关于天津</a>
       </div>
     </div>
     <a class="back-button" href="#campus-select" data-return-page="campus-select">返回专业查询</a>
-    <div class="page-number">06 / 17</div>
+    <div class="page-number">06 / 22</div>
   </section>
 
   <section class="page page-info optional-page" id="freshman-page" data-previous-page="info-hub" hidden>
@@ -256,31 +316,31 @@
       </article>
     </div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
-    <div class="page-number">07 / 17</div>
+    <div class="page-number">07 / 22</div>
   </section>
 
   <section class="page page-info optional-page" id="card-page" data-previous-page="info-hub" hidden>
     <div class="page-inner"><article class="info-panel"><h2>关于校园卡</h2><p>校园卡用来洗澡、门禁、食堂、打水、吹风机……到时候会有一个APP（今日校园，在APP里缴费。校园卡丢了之后要去食堂机器那补办，30块钱补办一次</p></article></div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
-    <div class="page-number">08 / 17</div>
+    <div class="page-number">08 / 22</div>
   </section>
 
   <section class="page page-info optional-page" id="textbook-page" data-previous-page="info-hub" hidden>
     <div class="page-inner"><article class="info-panel"><h2>关于教材</h2><p>您在报到前不用太过着急购买教材，军训前或军训期间，您的辅导员会告诉您所需教材，您可在本校跳蚤群中购买二手或者在其他平台购买</p></article></div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
-    <div class="page-number">09 / 17</div>
+    <div class="page-number">09 / 22</div>
   </section>
 
   <section class="page page-info optional-page" id="training-page" data-previous-page="info-hub" hidden>
     <div class="page-inner"><article class="info-panel"><h2>关于军训</h2><p>开学军训是必须有的，此为<strong>必修课</strong>。除非您有先天性的疾病或身体缺陷，以及一些长久状态的身体障碍，否则无法免训。如骨折、突发疾病等等情况，可申请缓训，但你需要第二年和下一届的新生一起再补训。如果感冒生病，可以找辅导员请假，共三次机会，超过三次可能影响军训成绩，如果您实在不好受可以申请见习，不影响成绩。本校军训强度较低，建议您坚持下来，一定会有所收获的</p></article></div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
-    <div class="page-number">10 / 17</div>
+    <div class="page-number">10 / 22</div>
   </section>
 
   <section class="page page-info optional-page" id="dorm-power-page" data-previous-page="info-hub" hidden>
     <div class="page-inner"><article class="info-panel"><h2>关于空调及宿舍用电</h2><p>宿舍空调有租赁费＋电费，具体内容在宿舍一楼舍管阿姨对面的墙上，可以打电话询问，新生报到前三天空调一般来说是随便使用的，如果您不租赁空调的话会停用（不交电费也会）</p></article></div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
-    <div class="page-number">11 / 17</div>
+    <div class="page-number">11 / 22</div>
   </section>
 
   <section class="tianjin-stage optional-page transition-stage" id="tianjin-stage" data-previous-page="info-hub" data-next-page="tianjin-explore" hidden>
@@ -301,7 +361,7 @@
         <p>欢迎您在得空的时候来天津逛逛！</p>
       </article>
       <a class="portal-link tianjin-detail-link" id="tianjinDetailLink" href="https://baike.baidu.com/item/%e5%a4%a9%e6%b4%a5%e5%b8%82/213824" target="_blank" rel="noopener noreferrer">点击查看天津详细介绍</a>
-      <div class="page-number" id="tianjinNumber">12 / 17</div>
+      <div class="page-number" id="tianjinNumber">12 / 22</div>
       <div class="tianjin-progress" aria-hidden="true"><span></span></div>
     </div>
     <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
@@ -314,26 +374,66 @@
       <div class="explore-prompt">向下滚动，继续探索天津风景</div>
     </div>
     <a class="back-button" href="#tianjin-stage" data-return-page="tianjin-stage">返回天津介绍</a>
-    <div class="page-number">14 / 17</div>
+    <div class="page-number">14 / 22</div>
   </section>
 
   <section class="page scenic-page optional-page" id="century-clock" data-previous-page="tianjin-explore" data-next-page="tianjin-eye" style="background-image:url('./century-clock.png')" hidden>
     <div class="scene-title scene-title-front"><div class="scene-stack"><h2>世纪钟</h2><p>CENTURY CLOCK</p></div></div><div class="scene-subject scene-subject-clock" aria-hidden="true"></div>
     <a class="back-button" href="#tianjin-explore" data-return-page="tianjin-explore">返回天津风景</a>
-    <div class="page-number">15 / 17</div>
+    <div class="page-number">15 / 22</div>
   </section>
 
   <section class="page scenic-page optional-page" id="tianjin-eye" data-previous-page="century-clock" data-next-page="jiefang-bridge" style="background-image:url('./tianjin-eye-updated.png')" hidden>
     <div class="scene-title"><div class="scene-stack"><h2>天津之眼</h2><p>TIANJIN EYE</p></div></div><div class="scene-subject scene-subject-eye" aria-hidden="true"></div>
     <a class="back-button" href="#century-clock" data-return-page="century-clock">返回上一景</a>
-    <div class="page-number">16 / 17</div>
+    <div class="page-number">16 / 22</div>
   </section>
 
   <section class="page scenic-page optional-page" id="jiefang-bridge" data-previous-page="tianjin-eye" style="background-image:url('./jiefang-bridge-updated.png')" hidden>
     <div class="scene-title"><div class="scene-stack"><h2>解放桥</h2><p>JIEFANG BRIDGE</p></div></div><div class="scene-subject scene-subject-bridge" aria-hidden="true"></div>
     <a class="back-button" href="#tianjin-eye" data-return-page="tianjin-eye">返回上一景</a>
-    <div class="page-number">17 / 17</div>
-  </section>  <script>
+    <div class="page-number">17 / 22</div>
+  </section>
+  <section class="page page-north-detail optional-page" id="north-canteen" data-previous-page="north-campus" data-popup-parent="north-campus" hidden>
+    <div class="page-inner"><article class="info-panel life-panel" tabindex="0" aria-label="关于食堂"><h2>关于食堂</h2><p>北苑食堂较小，但菜品比较丰富，价格较为便宜，是性价比之王，菜品包括：麻辣烫、汉堡薯条炸鸡、各类米饭配菜等等，值得一提的是：邱志杰校长推出了一个计划——早鸟计划，该计划顾名思义，就是前200名来食堂吃早餐的同学可以用一块钱买很多吃的（有价值限额，但足以吃饱），该计划旨在培养大学生良好生活习惯的同时帮助同学们省钱（我个人觉得这个项目还是很不错的）</p>
+      <div class="life-gallery single"><figure><a class="info-image-link" href="./north-canteen.png" target="_blank" rel="noopener noreferrer" aria-label="打开北苑食堂原图"><img src="./north-canteen.png" alt="北苑食堂" loading="lazy"></a><figcaption>北苑食堂 · 点击查看原图</figcaption></figure></div>
+    </article></div>
+    <a class="back-button" href="#north-campus" data-return-page="north-campus">返回北苑</a>
+    <div class="page-number">18 / 22</div>
+  </section>
+
+  <section class="page page-north-detail optional-page" id="north-parcel" data-previous-page="north-campus" data-popup-parent="north-campus" hidden>
+    <div class="page-inner"><article class="info-panel life-panel" tabindex="0" aria-label="关于快递站"><h2>关于快递站</h2><p>北苑校内有一个顺丰快递站（只接受顺丰快递，在校内便利店旁边），校园外南边100米左右有两个菜鸟驿站：靠近宿舍楼这一侧是多多妈妈驿站，多多妈妈驿站对面就是菜鸟驿站，寄收快递还是蛮方便的（快递地址就填：天津市美术学院志成路校区）</p>
+      <div class="life-gallery single"><figure><a class="info-image-link" href="./north-parcel-map.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开北苑附近快递站位置原图"><img src="./north-parcel-map.jpg" alt="北苑附近快递站位置" loading="lazy"></a><figcaption>北苑附近快递站位置 · 点击查看原图</figcaption></figure></div>
+    </article></div>
+    <a class="back-button" href="#north-campus" data-return-page="north-campus">返回北苑</a>
+    <div class="page-number">19 / 22</div>
+  </section>
+
+  <section class="page page-north-detail optional-page" id="north-food" data-previous-page="north-campus" data-popup-parent="north-campus" hidden>
+    <div class="page-inner"><article class="info-panel life-panel" tabindex="0" aria-label="关于吃食"><h2>关于吃食</h2><p>学校附近有很多饭馆：新疆炒米粉、炒饼、肉夹馍等等等等，南边远处还有商场（没啥好吃的，但是可以逛逛），最值得一提的还是外卖，宿舍区里面就有个外卖柜，不用出宿舍区大门（如图，点外卖的时候也要选这个外卖柜）</p>
+      <div class="life-gallery"><figure><a class="info-image-link" href="./north-food-street.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开学校附近的饭馆与店铺原图"><img src="./north-food-street.jpg" alt="学校附近的饭馆与店铺" loading="lazy"></a><figcaption>学校附近的饭馆与店铺 · 点击查看原图</figcaption></figure><figure><a class="info-image-link" href="./north-takeaway-map.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开宿舍区外卖柜位置原图"><img src="./north-takeaway-map.jpg" alt="宿舍区外卖柜位置" loading="lazy"></a><figcaption>宿舍区外卖柜位置 · 点击查看原图</figcaption></figure></div>
+    </article></div>
+    <a class="back-button" href="#north-campus" data-return-page="north-campus">返回北苑</a>
+    <div class="page-number">20 / 22</div>
+  </section>
+
+  <section class="page page-north-detail optional-page" id="north-dorm" data-previous-page="north-campus" data-popup-parent="north-campus" hidden>
+    <div class="page-inner"><article class="info-panel life-panel" tabindex="0" aria-label="关于宿舍"><h2>关于宿舍</h2><p>北苑没有八人寝，只有四人寝和六人寝（见下图），六人寝住宿费1000元，四人寝住宿费1200元，注意：有的六人寝宿舍不带厕所。男生浴室在宿舍楼内部一楼，吹风机就在对面水房；女生浴室在宿舍楼外面几步路，其他数据不详（由于我是男生具体内容我也不知道）</p>
+      <div class="life-gallery"><figure><a class="info-image-link" href="./north-dorm-room-1.png" target="_blank" rel="noopener noreferrer" aria-label="打开北苑宿舍环境（一）原图"><img src="./north-dorm-room-1.png" alt="北苑宿舍环境（一）" loading="lazy"></a><figcaption>北苑宿舍环境（一） · 点击查看原图</figcaption></figure><figure><a class="info-image-link" href="./north-dorm-room-2.png" target="_blank" rel="noopener noreferrer" aria-label="打开北苑宿舍环境（二）原图"><img src="./north-dorm-room-2.png" alt="北苑宿舍环境（二）" loading="lazy"></a><figcaption>北苑宿舍环境（二） · 点击查看原图</figcaption></figure></div>
+    </article></div>
+    <a class="back-button" href="#north-campus" data-return-page="north-campus">返回北苑</a>
+    <div class="page-number">21 / 22</div>
+  </section>
+
+  <section class="page page-info optional-page" id="dorm-guide" data-previous-page="info-hub" hidden>
+    <div class="page-inner"><article class="info-panel life-panel" tabindex="0" aria-label="关于宿舍"><h2>关于宿舍</h2>
+      <p>宿舍床铺大小均为190x90，允许买窗帘，允许自己在网上买床铺与被子。一个宿舍并不一定都是一个专业的，看运气（不过大部分都是一个专业的）</p>
+    </article></div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">22 / 22</div>
+  </section>
+  <script>
     const majorForm = document.getElementById("majorForm");
     const majorInput = document.getElementById("majorInput");
     const majorResult = document.getElementById("majorResult");
@@ -459,7 +559,7 @@
         detailLink.style.pointerEvents = storyVisible ? "auto" : "none";
         detailLink.tabIndex = storyVisible ? 0 : -1;
       }
-      if (number) number.textContent = storyVisible ? "13 / 17" : "12 / 17";
+      if (number) number.textContent = storyVisible ? "13 / 22" : "12 / 22";
     }
 
     function updateTransitions() {
@@ -479,8 +579,8 @@
       copy.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
       overlay.appendChild(copy);
       document.body.appendChild(overlay);
-      const originals = source.querySelectorAll(".story-box, .info-panel");
-      copy.querySelectorAll(".story-box, .info-panel").forEach((panel, index) => {
+      const originals = source.querySelectorAll(".story-box, .info-panel, .north-guide-scroll");
+      copy.querySelectorAll(".story-box, .info-panel, .north-guide-scroll").forEach((panel, index) => {
         panel.scrollTop = originals[index]?.scrollTop || 0;
       });
       return overlay;
@@ -525,6 +625,8 @@
       const source = currentSection();
       const startY = window.scrollY;
       const internalStageTransition = source === page && transitionStages.includes(page);
+      const popupOpening = page.dataset.popupParent === source?.id;
+      const popupClosing = source?.dataset.popupParent === page.id;
       let overlay;
       let incoming;
       const animations = [];
@@ -537,6 +639,18 @@
         if (!reducedMotion) {
           if (internalStageTransition) {
             animateStagePopup(page, targetY > startY, animations);
+          } else if (popupOpening || popupClosing) {
+            const panel = popupOpening ? page.querySelector(".info-panel") : overlay.querySelector(".info-panel");
+            const frames = [
+              { transform: "translateY(-110px) scale(.97)", opacity: 0 },
+              { transform: "translateY(0) scale(1)", opacity: 1 }
+            ];
+            animations.push(panel.animate(popupOpening ? frames : [...frames].reverse(), {
+              duration: popupDuration, easing: motionEasing, fill: "both"
+            }));
+            animations.push(overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+              duration: 650, delay: popupOpening ? 0 : 600, easing: motionEasing, fill: "both"
+            }));
           } else {
             incoming = viewportFor(page);
             incoming.style.willChange = "transform";
@@ -629,7 +743,7 @@
       event.preventDefault();
       if (switchingPage) return;
       // Let long text scroll inside its own panel before leaving that page.
-      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel") : null;
+      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel, .north-guide-scroll") : null;
       if (panel && panel.scrollHeight > panel.clientHeight + 2) {
         const canScroll = direction > 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2;
         if (canScroll) { panel.scrollTop += direction * Math.max(80, Math.abs(event.deltaY)); return; }
@@ -641,7 +755,11 @@
       const target = event.target instanceof Element ? event.target : null;
       if (event.altKey || event.ctrlKey || event.metaKey || target?.closest("input, textarea, select, [contenteditable='true']")) return;
       const direction = ["ArrowDown", "PageDown"].includes(event.key) ? 1 : ["ArrowUp", "PageUp"].includes(event.key) ? -1 : 0;
-      if (direction) { event.preventDefault(); navigateByDirection(direction); }
+      if (direction) {
+        const panel = target?.closest(".story-box, .info-panel, .north-guide-scroll");
+        if (panel && (direction > 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2)) return;
+        event.preventDefault(); navigateByDirection(direction);
+      }
     });
     window.addEventListener("scroll", updateTransitions, { passive: true });
     window.addEventListener("resize", updateTransitions);
