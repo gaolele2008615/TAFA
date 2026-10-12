@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="天津美术学院介绍与校区导航">
+  <title>TAFA欢迎您</title>
+  <link rel="preload" as="image" href="./tianjin-eye-updated.png">
+  <link rel="preload" as="image" href="./jiefang-bridge-updated.png">
+  <!-- 将 download.png、north-campus.png、campus-gate.png 放在本文件同一文件夹。 -->
+  <style>
+    :root{--white:#fff;--muted:rgba(255,255,255,.84);--yellow:#ffd35c;--navy:#062238;--panel:rgba(3,24,43,.82);--blue:#0d3a63}
+    *{box-sizing:border-box}
+    html{scroll-behavior:auto;scroll-snap-type:none;-webkit-text-size-adjust:100%}
+    body{margin:0;overflow-x:hidden;overscroll-behavior-y:none;background:#061b2b;color:var(--white);font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+    [hidden]{display:none!important}
+    a,button,input{font:inherit}
+    .page{position:relative;display:flex;min-height:100svh;overflow:hidden;scroll-snap-align:start;isolation:isolate;background-position:center;background-size:cover;background-attachment:fixed}
+    .page:before{position:absolute;inset:0;z-index:-2;content:"";background:linear-gradient(180deg,rgba(3,17,31,.18),rgba(2,12,23,.82))}
+    .page:after{position:absolute;inset:0;z-index:-1;content:"";pointer-events:none;background:radial-gradient(circle at center,transparent 10%,rgba(0,0,0,.28) 100%)}
+    .page-one,.page-two,.page-five{background-image:url("./download.png")}
+    .page-three{background-image:url("./north-campus.png")}
+    .page-four{background-image:url("./campus-gate.png")}
+    .intro-stage{position:relative;height:200svh;scroll-snap-align:start;background:#061b2b}
+    .intro-viewport{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate;background-image:url("./download.png");background-position:center;background-size:cover;background-attachment:fixed}
+    .intro-viewport:before{position:absolute;inset:0;z-index:-2;content:"";background:linear-gradient(180deg,rgba(3,17,31,.18),rgba(2,12,23,.84))}
+    .intro-viewport:after{position:absolute;inset:0;z-index:-1;content:"";pointer-events:none;background:radial-gradient(circle at center,transparent 8%,rgba(0,0,0,.32) 100%)}
+    .intro-layer{position:absolute;inset:0;z-index:1;will-change:opacity,transform,filter}
+    .intro-welcome{display:flex;align-items:center;justify-content:center;padding:72px 5vw;text-align:center}
+    .intro-welcome .welcome{width:100%}
+    .intro-story{top:50%;right:auto;bottom:auto;left:50%;width:min(92vw,950px);max-height:82svh;opacity:0;pointer-events:none;transform:translate(-50%,-50%) translateY(42px);filter:blur(4px)}
+    .intro-progress{position:absolute;right:30px;bottom:30px;z-index:3;width:92px;height:3px;overflow:hidden;background:rgba(255,255,255,.25)}
+    .intro-progress span{display:block;width:48%;height:100%;background:var(--yellow);transform-origin:left center}
+    .campus-card{will-change:transform}
+    @media (max-width:680px){.intro-viewport{background-attachment:scroll}.intro-story{max-height:78svh}.intro-progress{right:20px;bottom:22px}}
+    .page-inner{position:relative;z-index:1;display:flex;width:min(92vw,1240px);min-height:100svh;margin:auto;padding:72px 0;align-items:center;justify-content:center}
+    .welcome{width:100%;text-align:center}
+    .eyebrow{margin:0 0 24px;color:var(--muted);font-size:clamp(12px,1.5vw,18px);font-weight:700;letter-spacing:.28em;text-transform:uppercase}
+    .welcome h1{margin:0;font-size:clamp(54px,9vw,138px);line-height:1.05;text-shadow:0 16px 35px rgba(0,0,0,.45)}
+    .welcome h1 span{color:var(--yellow)}
+    .welcome p:last-child{margin:28px 0 0;color:var(--muted);font-size:clamp(17px,2vw,28px);letter-spacing:.12em}
+    .portal-link{position:absolute;right:42px;bottom:32px;z-index:2;color:var(--yellow);font-size:clamp(15px,1.5vw,22px);font-weight:700;text-decoration:none;text-shadow:0 2px 8px rgba(0,0,0,.7);transition:.2s}
+    .portal-link:hover{color:#fff1a8;transform:translateY(-3px)}
+    .scroll-tip{position:absolute;bottom:30px;left:50%;color:rgba(255,255,255,.75);font-size:13px;letter-spacing:.2em;transform:translateX(-50%)}
+    .story-box{width:min(92vw,950px);max-height:82svh;padding:clamp(24px,4vw,52px);overflow-y:auto;border:1px solid rgba(255,255,255,.22);border-radius:24px;background:rgba(3,23,40,.78);box-shadow:0 24px 70px rgba(0,0,0,.35);backdrop-filter:blur(12px)}
+    .story-box h2{margin:0 0 26px;color:var(--yellow);font-size:clamp(30px,4vw,58px);line-height:1.2;text-align:center}
+    .story-box p{margin:0 0 22px;color:rgba(255,255,255,.94);font-size:clamp(16px,1.6vw,21px);line-height:1.95;text-indent:2em}
+    .story-box p:last-child{margin-bottom:0}
+    .story-box a{color:var(--yellow);text-decoration:underline;text-underline-offset:4px}
+    .selector-layout{display:grid;width:100%;grid-template-columns:minmax(175px,.75fr) minmax(330px,1.5fr) minmax(175px,.75fr);gap:clamp(16px,3vw,44px);align-items:center}
+    .selector-main,.campus-card,.location-copy{border:1px solid rgba(255,255,255,.2);background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.32);backdrop-filter:blur(10px)}
+    .selector-main{padding:clamp(22px,3vw,42px);border-radius:24px;text-align:center}
+    .selector-main h2{margin:0;font-size:clamp(26px,3.5vw,48px);line-height:1.3}
+    .selector-main p{margin:16px 0 26px;color:var(--muted);font-size:15px}
+    .major-form{display:flex;gap:10px}
+    .major-form input{min-width:0;flex:1;padding:15px 17px;border:1px solid rgba(255,255,255,.28);border-radius:8px;outline:none;background:rgba(255,255,255,.96);color:#09243a;font-size:16px}
+    .major-form input:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,211,92,.24)}
+    .major-form button,.card-link,.back-button{border:0;cursor:pointer;color:var(--white);background:var(--blue);transition:.2s}
+    .major-form button{padding:0 22px;border-radius:8px;font-weight:700}
+    .major-form button:hover,.card-link:hover,.back-button:hover{background:#17629e;transform:translateY(-2px)}
+    .major-result{min-height:34px;margin-top:20px;color:var(--yellow);font-size:18px;font-weight:700;line-height:1.6}
+    .campus-card{padding:26px 22px 22px;border-radius:4px;transform:scale(1);transform-origin:center}
+    .card-icon{display:grid;width:64px;height:64px;margin-bottom:24px;place-items:center;background:rgba(26,76,117,.7);font-size:30px;font-weight:800}
+    .campus-card h3{margin:0;font-size:clamp(25px,2.5vw,40px)}
+    .campus-card .english{margin:9px 0 24px;color:#b7d0e5;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+    .campus-card p:not(.english){min-height:92px;margin:0 0 24px;color:var(--muted);font-size:15px;line-height:1.8}
+    .card-link{display:block;width:100%;padding:15px 12px;text-align:center;text-decoration:none;font-weight:700}
+    .location-content{width:100%}
+    .location-copy{width:min(520px,86vw);padding:clamp(28px,5vw,70px);border-left:5px solid var(--yellow);transform:scale(.5);transform-origin:left center}
+    .location-copy .label{margin:0 0 18px;color:rgba(255,255,255,.76);font-size:14px;letter-spacing:.22em}
+    .location-copy h2{margin:0 0 18px;font-size:clamp(34px,5vw,72px);line-height:1.1}
+    .location-copy p{margin:0 0 30px;color:var(--muted);font-size:18px;line-height:1.8}
+    .map-link{display:inline-block;padding:14px 22px;color:#071e33;background:var(--yellow);font-size:16px;font-weight:800;text-decoration:none;transition:.2s}
+    .map-link:hover{background:#fff0a5;transform:translateY(-3px)}
+    .back-button{position:absolute;top:28px;left:28px;z-index:2;padding:11px 16px;border:1px solid rgba(255,255,255,.24);background:rgba(3,24,43,.75);font-size:14px;text-decoration:none}
+    .page-number{position:absolute;right:30px;bottom:26px;color:rgba(255,255,255,.72);font-size:13px;letter-spacing:.16em}
+    @media (max-width:900px){.selector-layout{grid-template-columns:1fr 1.4fr 1fr;gap:12px}.campus-card{padding:18px 14px}.campus-card p:not(.english){min-height:128px;font-size:13px}.card-icon{width:48px;height:48px;margin-bottom:15px;font-size:23px}}
+    @media (max-width:680px){.page{background-attachment:scroll}.page-inner{width:min(92vw,560px);padding:76px 0 60px}.selector-layout{display:flex;flex-direction:column;justify-content:center;gap:12px}.selector-main{order:1;width:100%}.campus-card{width:100%;transform:scale(1)}.campus-card p:not(.english){min-height:auto;margin-bottom:16px}.major-form{flex-direction:column}.major-form input,.major-form button{min-height:48px}.location-copy{width:100%}.portal-link{right:20px;bottom:22px}.scroll-tip{bottom:22px;font-size:11px}}
+    .continue-hint{position:absolute;left:50%;bottom:30px;z-index:2;color:rgba(255,255,255,.82);font-size:13px;letter-spacing:.24em;transform:translateX(-50%);text-shadow:0 2px 10px rgba(0,0,0,.7)}
+    .page-six{background-image:url("./campus-north-entrance.png")}
+    .info-hub-inner{flex-direction:column;align-items:center;gap:28px;padding-top:84px;padding-bottom:92px}
+    .info-heading{margin:0;color:var(--white);font-size:clamp(28px,4vw,58px);letter-spacing:.08em;text-align:center;text-shadow:0 12px 30px rgba(0,0,0,.48)}
+    .info-subtitle{margin:0;color:var(--muted);font-size:clamp(14px,1.5vw,18px);letter-spacing:.14em;text-align:center}
+    .info-grid{display:grid;width:min(92vw,1120px);grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .info-tile{display:flex;min-height:128px;align-items:center;justify-content:center;padding:22px;border:1px solid rgba(255,240,165,.76);border-radius:14px;color:#07243b;background:linear-gradient(135deg,rgba(255,219,111,.96),rgba(248,181,61,.94));box-shadow:0 18px 42px rgba(0,0,0,.26);font-size:clamp(17px,1.5vw,23px);font-weight:800;letter-spacing:.06em;text-align:center;text-decoration:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,filter .45s}
+    .info-tile:hover{transform:translateY(-7px) scale(1.025);box-shadow:0 24px 54px rgba(0,0,0,.4);filter:saturate(1.08) brightness(1.05)}
+    .page-info{background-image:url("./campus-north-entrance.png")}
+    .page-info:before{background:linear-gradient(180deg,rgba(3,17,31,.46),rgba(2,12,23,.84));backdrop-filter:blur(7px) saturate(.72)}
+    .info-panel{width:min(88vw,980px);max-height:82svh;padding:clamp(28px,4.5vw,58px);overflow-y:auto;border:1px solid rgba(255,255,255,.2);border-radius:26px;background:rgba(3,23,40,.8);box-shadow:0 26px 80px rgba(0,0,0,.38);backdrop-filter:blur(14px);text-align:center}
+    .info-panel h2{margin:0 0 28px;color:var(--yellow);font-size:clamp(28px,4vw,56px);line-height:1.15}
+    .info-panel p{margin:0 auto;color:rgba(255,255,255,.94);font-size:clamp(17px,1.8vw,24px);line-height:1.95;text-align:left}
+    .info-panel p+p{margin-top:22px}
+    .info-panel .info-image-link{display:inline-block;margin:28px auto 0;border-radius:14px;outline:0;transition:transform .4s,box-shadow .4s}
+    .info-panel .info-image-link:hover{transform:scale(1.025);box-shadow:0 20px 45px rgba(0,0,0,.4)}
+    .info-panel img{display:block;width:min(72vw,560px);max-height:38svh;object-fit:cover;border-radius:14px}
+    .tianjin-stage{position:relative;height:200svh;scroll-snap-align:start;background:#171d2e}
+    .tianjin-viewport{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate;background-image:url("./tianjin-skyline.png");background-position:center;background-size:cover;background-attachment:fixed}
+    .tianjin-viewport:before{position:absolute;inset:0;z-index:-2;content:"";background:linear-gradient(180deg,rgba(18,22,42,.08),rgba(10,13,27,.78))}
+    .tianjin-viewport:after{position:absolute;inset:0;z-index:-1;content:"";pointer-events:none;background:radial-gradient(circle at center,transparent 5%,rgba(5,8,18,.34) 100%)}
+    .tianjin-layer{position:absolute;inset:0;z-index:1;will-change:opacity,transform,filter}
+    .tianjin-welcome{display:flex;align-items:center;justify-content:center;padding:72px 5vw;text-align:center}
+    .tianjin-welcome .welcome{width:100%}
+    .tianjin-welcome .eyebrow{letter-spacing:.34em}
+    .tianjin-story{top:50%;right:auto;bottom:auto;left:50%;width:min(92vw,1000px);max-height:78svh;opacity:0;pointer-events:none;transform:translate(-50%,-50%) translateY(42px);filter:blur(4px)}
+    .tianjin-detail-link{opacity:0;pointer-events:none;transition:opacity .5s,transform .25s}
+    .tianjin-progress{position:absolute;right:30px;bottom:30px;z-index:3;width:92px;height:3px;overflow:hidden;background:rgba(255,255,255,.3)}
+    .tianjin-progress span{display:block;width:100%;height:100%;background:var(--yellow);transform:scaleX(.04);transform-origin:left center}
+    .page-explore{background-image:none}
+    .page-explore:before{z-index:-2;background-image:linear-gradient(180deg,rgba(18,22,42,.14),rgba(10,13,27,.76)),url("./tianjin-skyline.png");background-position:center;background-size:cover;filter:none}
+    .explore-inner{flex-direction:column;gap:34px;text-align:center}
+    .explore-inner h2{margin:0;color:var(--white);font-size:clamp(38px,7vw,92px);line-height:1.1;text-shadow:0 14px 34px rgba(0,0,0,.5)}
+    .explore-inner p{margin:0;color:var(--muted);font-size:clamp(16px,1.8vw,24px);letter-spacing:.12em}
+    .explore-prompt{margin-top:10px;padding:18px 28px;border:1px solid rgba(255,236,155,.72);border-radius:999px;color:var(--yellow);background:rgba(3,24,43,.42);box-shadow:0 18px 45px rgba(0,0,0,.28);font-size:clamp(15px,1.6vw,22px);font-weight:700;letter-spacing:.16em;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+    .scenic-page{background-position:center;background-size:cover}
+    .scenic-page:before{background:linear-gradient(180deg,rgba(3,17,31,.16),rgba(2,12,23,.64))}
+    .scene-title{position:absolute;inset:0;z-index:1;display:grid;place-items:center;pointer-events:none;text-align:center}
+    .scene-title h2{margin:0;color:rgba(255,255,255,.82);font-size:clamp(76px,15vw,230px);font-weight:900;letter-spacing:.08em;line-height:.9;mix-blend-mode:screen;text-shadow:0 12px 36px rgba(0,0,0,.5);transform:translateY(-3vh)}
+    .scene-title p{margin:24px 0 0;color:rgba(255,255,255,.86);font-size:clamp(15px,2vw,28px);letter-spacing:.32em}
+    .scene-title .scene-stack{transform:translateY(-3vh)}
+    .scene-title .scene-stack h2{font-size:clamp(64px,12vw,190px)}
+    .flow-back{top:28px;left:28px}
+    @media (max-width:900px){.info-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.info-tile{min-height:112px;padding:18px}.tianjin-viewport{background-attachment:scroll}}
+    @media (max-width:680px){.continue-hint{bottom:22px;font-size:11px}.info-hub-inner{gap:18px;padding-top:72px}.info-grid{grid-template-columns:1fr;gap:10px}.info-tile{min-height:72px;padding:14px}.info-panel{width:90vw;max-height:78svh;padding:24px}.info-panel p{font-size:16px}.info-panel img{width:78vw;max-height:34svh}.tianjin-story{max-height:76svh}.tianjin-progress{right:20px;bottom:22px}.explore-inner{gap:22px}.explore-prompt{max-width:86vw;padding:14px 20px;font-size:12px}.scene-title h2{font-size:clamp(56px,18vw,120px)}.scene-title p{font-size:12px}}
+    .scene-subject{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:inherit;background-position:center;background-size:cover;opacity:.98;clip-path:none;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:cover;mask-size:cover;will-change:opacity}
+    .scene-subject-clock{-webkit-mask-image:radial-gradient(ellipse 23% 49% at 61% 57%,#000 0 34%,rgba(0,0,0,.96) 50%,rgba(0,0,0,.62) 68%,transparent 89%);mask-image:radial-gradient(ellipse 23% 49% at 61% 57%,#000 0 34%,rgba(0,0,0,.96) 50%,rgba(0,0,0,.62) 68%,transparent 89%)}
+    .scene-subject-eye{-webkit-mask-image:radial-gradient(ellipse 28% 43% at 50% 60%,#000 0 35%,rgba(0,0,0,.95) 52%,rgba(0,0,0,.6) 70%,transparent 90%);mask-image:radial-gradient(ellipse 28% 43% at 50% 60%,#000 0 35%,rgba(0,0,0,.95) 52%,rgba(0,0,0,.6) 70%,transparent 90%)}
+    .scene-subject-bridge{-webkit-mask-image:radial-gradient(ellipse 50% 17% at 50% 56%,#000 0 34%,rgba(0,0,0,.94) 52%,rgba(0,0,0,.56) 72%,transparent 93%);mask-image:radial-gradient(ellipse 50% 17% at 50% 56%,#000 0 34%,rgba(0,0,0,.94) 52%,rgba(0,0,0,.56) 72%,transparent 93%)}
+
+    .site-notice{position:absolute;top:24px;left:28px;max-width:calc(100% - 56px);margin:0;padding:11px 15px;border:1px solid rgba(255,211,92,.45);border-radius:8px;background:rgba(3,24,43,.76);color:var(--yellow);font-size:clamp(12px,1.1vw,16px);font-weight:700;line-height:1.5;text-align:left;letter-spacing:.02em;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+    .page,.intro-viewport,.tianjin-viewport{background-attachment:scroll}
+    .scene-title-front{z-index:3}
+    .scenic-page .back-button,.scenic-page .page-number{z-index:4}
+    .page-slide-snapshot{position:fixed;top:0;left:0;width:100%;height:100svh;z-index:1000;overflow:hidden;pointer-events:none;background:#061b2b;contain:layout paint}
+    .page-slide-snapshot>.slide-copy{position:absolute!important;inset:0!important;top:0!important;left:0!important;width:100%!important;height:100%!important;min-height:100%!important;margin:0!important;scroll-snap-align:none;transform:none;background-attachment:scroll!important}
+    .info-tile{transition:transform .18s,box-shadow .18s,filter .18s}
+    .info-panel .info-image-link{transition:transform .18s,box-shadow .18s}
+    .tianjin-detail-link{transition:none}
+    @media(max-width:680px){.site-notice{top:16px;left:16px;max-width:calc(100% - 32px);padding:9px 11px;font-size:11px}.intro-welcome{padding-top:100px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.info-tile,.info-image-link{transition:none}}
+    @media (max-width:680px){
+      :root{--mobile-gutter:16px}
+      html{font-size:16px;scroll-snap-type:none}
+      body{width:100%;min-width:0;overflow-x:hidden;touch-action:pan-y}
+      .page,.intro-viewport,.tianjin-viewport{background-attachment:scroll}
+      .page{min-height:100svh;min-height:100dvh}
+      .intro-stage,.tianjin-stage{height:200svh}
+      .intro-viewport,.tianjin-viewport{height:100svh;height:100dvh}
+      .page-inner{width:100%;min-height:100svh;min-height:100dvh;padding:clamp(70px,11vh,104px) var(--mobile-gutter) clamp(60px,9vh,88px)}
+      .site-notice{top:max(12px,env(safe-area-inset-top));left:var(--mobile-gutter);right:var(--mobile-gutter);max-width:none;font-size:clamp(11px,3.1vw,13px);line-height:1.45}
+      .intro-welcome{padding:calc(94px + env(safe-area-inset-top)) var(--mobile-gutter) calc(88px + env(safe-area-inset-bottom))}
+      .welcome h1{font-size:clamp(42px,14vw,72px);line-height:1.04;white-space:nowrap}
+      .welcome p:last-child{font-size:clamp(14px,4vw,18px);line-height:1.6;letter-spacing:.06em}
+      .eyebrow{font-size:11px;letter-spacing:.18em;margin-bottom:16px}
+      .portal-link{right:var(--mobile-gutter);bottom:calc(22px + env(safe-area-inset-bottom));max-width:45vw;font-size:13px;line-height:1.4;text-align:right}
+      .scroll-tip{bottom:calc(20px + env(safe-area-inset-bottom));max-width:80vw;font-size:10px;white-space:nowrap;letter-spacing:.12em}
+      .intro-story,.tianjin-story{top:50%;left:50%;right:auto;bottom:auto;width:calc(100% - var(--mobile-gutter) - var(--mobile-gutter));max-height:calc(100svh - 126px);max-height:calc(100dvh - 126px);padding:24px 18px;border-radius:18px}
+      .story-box h2{font-size:clamp(26px,8vw,38px);margin-bottom:16px}
+      .story-box p{font-size:15px;line-height:1.75;text-indent:2em;margin-bottom:16px}
+      .selector-layout{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+      .selector-main,.campus-card{width:100%;padding:18px;border-radius:16px}
+      .selector-main{order:1}.selector-layout .campus-card:first-of-type{order:2}.selector-layout .campus-card:last-of-type{order:3}
+      .selector-main h2{font-size:clamp(23px,7vw,34px);line-height:1.28}
+      .selector-main p{font-size:14px;margin:12px 0 18px}
+      .major-form{gap:9px}
+      .major-form input,.major-form button{min-height:48px}
+      .major-form button{padding:0 18px}
+      .campus-card h3{font-size:clamp(23px,7vw,32px)}
+      .campus-card .english{margin:7px 0 14px}
+      .campus-card p:not(.english){min-height:auto;font-size:14px;line-height:1.65;margin-bottom:16px}
+      .card-icon{width:48px;height:48px;margin-bottom:14px;font-size:23px}
+      .location-copy{width:100%;padding:26px 22px;transform:scale(1);border-left-width:4px}
+      .location-copy h2{font-size:clamp(38px,12vw,60px)}
+      .location-copy p{font-size:16px;line-height:1.7;margin-bottom:22px}
+      .map-link{display:block;width:100%;padding:14px 16px;text-align:center}
+      .info-hub-inner{gap:14px;padding-top:90px;padding-bottom:78px}
+      .info-heading{font-size:clamp(28px,9vw,42px);line-height:1.15}
+      .info-subtitle{font-size:13px;letter-spacing:.08em}
+      .info-grid{grid-template-columns:1fr;gap:10px;width:100%}
+      .info-tile{min-height:64px;padding:14px;font-size:16px;border-radius:12px}
+      .info-panel{width:100%;max-height:calc(100svh - 140px);max-height:calc(100dvh - 140px);padding:24px 18px;border-radius:18px}
+      .info-panel h2{font-size:clamp(25px,8vw,38px);margin-bottom:18px}
+      .info-panel p{font-size:15px;line-height:1.78}
+      .info-panel img{width:100%;max-height:32svh}
+      .back-button{top:calc(14px + env(safe-area-inset-top));left:var(--mobile-gutter);padding:9px 12px;font-size:12px}
+      .page-number{right:var(--mobile-gutter);bottom:calc(16px + env(safe-area-inset-bottom));font-size:11px}
+      .continue-hint{bottom:calc(16px + env(safe-area-inset-bottom));font-size:10px;letter-spacing:.12em}
+      .explore-inner{gap:18px}
+      .explore-inner h2{font-size:clamp(34px,10vw,56px)}
+      .explore-inner p{font-size:14px;line-height:1.65;letter-spacing:.04em;text-align:center}
+      .explore-prompt{max-width:100%;font-size:12px;line-height:1.5;letter-spacing:.08em;text-align:center}
+      .scene-title h2,.scene-title .scene-stack h2{font-size:clamp(52px,18vw,100px)}
+      .scene-title p{font-size:11px;letter-spacing:.2em;margin-top:14px}
+    }
+    @media (max-width:420px){
+      .major-form{flex-direction:column}
+      .major-form button{width:100%}
+      .intro-story,.tianjin-story{max-height:calc(100svh - 116px);max-height:calc(100dvh - 116px);padding:20px 15px}
+      .info-panel{max-height:calc(100svh - 126px);max-height:calc(100dvh - 126px)}
+      .welcome h1{font-size:clamp(38px,13vw,58px)}
+    }
+  </style>
+</head>
+<body>
+  <section class="intro-stage" id="intro-stage">
+    <div class="intro-viewport">
+      <div class="intro-layer intro-welcome" id="introWelcome">
+        <p class="site-notice">注意！此网站并非天津美术学院官方网站！</p>
+        <div class="welcome">
+          <p class="eyebrow">Tianjin Academy of Fine Arts</p>
+          <h1><span>TAFA</span>欢迎您</h1>
+          <p>在艺术与城市之间，开启你的创作旅程</p>
+        </div>
+        <a class="portal-link" href="https://www.tjarts.edu.cn/" target="_blank" rel="noopener noreferrer">点击查看学校官网</a>
+        <div class="scroll-tip">向下滚动继续浏览</div>
+      </div>
+
+      <article class="intro-layer story-box intro-story" id="introStory" aria-live="polite">
+        <h2>天津美术学院</h2>
+        <p>天津美术学院（Tianjin Academy of Fine Arts），简称“天美”、“<a href="https://baike.baidu.com/item/%E5%A4%A9%E6%B4%A5%E7%BE%8E%E9%99%A2/5290070?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">天津美院</a>”，位于<a href="https://baike.baidu.com/item/%E5%A4%A9%E6%B4%A5%E5%B8%82/213824?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">天津市</a>，是中国最具影响的九所美术院校之一、中国北方重要的美术教育和美术研究中心，为中国独立设置的八所美术学院之一，为国家级人才培养模式创新实验区。</p>
+        <p>学院前身是1906年由中国近代教育家<a href="https://baike.baidu.com/item/%E5%82%85%E5%A2%9E%E6%B9%98/8859049?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">傅增湘</a>先生创办的<a href="https://baike.baidu.com/item/%E5%8C%97%E6%B4%8B%E5%A5%B3%E5%B8%88%E8%8C%83%E5%AD%A6%E5%A0%82/5321696?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">北洋女师范学堂</a>。新中国成立后，学校经过多次调整、易名，经历了<a href="https://baike.baidu.com/item/%E6%B2%B3%E5%8C%97%E5%B8%88%E8%8C%83%E5%AD%A6%E9%99%A2/3042976?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">河北师范学院</a>、河北天津师范学院、河北艺术师范学院、<a href="https://baike.baidu.com/item/%E6%B2%B3%E5%8C%97%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2/6775402?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">河北美术学院</a>、天津艺术学院等，1980年正式更名为天津美术学院。2008年，学院获批国家级人才培养模式创新实验区。2025年，获批推免资格。</p>
+        <p>截至2025年10月，学校有天纬路、志成路两个校区，校园占地面积12.9万平方米，建筑面积17.7万平方米；有22个本科专业，11个二级学院，学术硕士学位授权点2个，专业硕士学位授权点2个；全日制在校生4781人，其中本科生3635人，研究生约1137人，有教职工580人，专任教师430人。</p>
+      </article>
+      <div class="intro-progress" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+  <section class="page page-three" id="campus-select">
+    <div class="page-inner">
+      <div class="selector-layout">
+        <aside class="campus-card">
+          <div class="card-icon">北</div>
+          <h3>了解北苑</h3>
+          <p class="english">North Campus</p>
+          <p>北苑主要招收设计类、新媒体、实验艺术、公共艺术的学生</p>
+          <a class="card-link" href="#north-campus" data-open-page="north-campus">点击了解北苑</a>
+        </aside>
+
+        <section class="selector-main">
+          <h2>不知道自己是南苑还是北苑？输入自己的专业查看！</h2>
+          <p>请输入专业名称，然后点击确认。</p>
+          <form class="major-form" id="majorForm">
+            <input id="majorInput" type="text" autocomplete="off" placeholder="例如：视觉传达设计" aria-label="输入专业名称">
+            <button type="submit">确认</button>
+          </form>
+          <div class="major-result" id="majorResult" aria-live="polite"></div>
+        </section>
+
+        <aside class="campus-card">
+          <div class="card-icon">南</div>
+          <h3>了解南苑</h3>
+          <p class="english">South Campus</p>
+          <p>南苑主要招收纯美术、造型类、国画、史论的学生</p>
+          <a class="card-link" href="#south-campus" data-open-page="south-campus">点击了解南苑</a>
+        </aside>
+      </div>
+    </div>
+    <a class="back-button" href="#intro-stage">返回学校介绍</a>
+    <div class="continue-hint">向下继续浏览</div>
+    <div class="page-number">03 / 05</div>
+  </section>
+
+  <section class="page page-four optional-page" id="north-campus" hidden>
+    <div class="page-inner">
+      <div class="location-content">
+        <div class="location-copy">
+          <p class="label">NORTH CAMPUS</p>
+          <h2>北苑</h2>
+          <p>点击下面的按钮查看北苑校区位置。</p>
+          <a class="map-link" href="https://cn.bing.com/maps/search?name=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;mepi=0%7E%7EEmbedded%7ELargeMapLink&amp;FORM=MPSRPL&amp;style=r&amp;q=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%BF%97%E6%88%90%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;cp=qhxggpts1992&amp;lvl=16" target="_blank" rel="noopener noreferrer">点击了解校区位置</a>
+        </div>
+      </div>
+    </div>
+    <a class="back-button" href="#campus-select">返回专业查询</a>
+    <div class="page-number">04 / 05</div>
+  </section>
+
+  <section class="page page-five optional-page" id="south-campus" hidden>
+    <div class="page-inner">
+      <div class="location-content">
+        <div class="location-copy">
+          <p class="label">SOUTH CAMPUS</p>
+          <h2>南苑</h2>
+          <p>点击下面的按钮查看南苑校区位置。</p>
+          <a class="map-link" href="https://cn.bing.com/maps/search?name=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;mepi=0%7E%7EEmbedded%7ELargeMapLink&amp;FORM=MPSRPL&amp;style=r&amp;ss=id.ypid%3AYNCNRN702NavInfo620019367&amp;q=%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;ppois=39.153419494628906_117.19438171386719_%E5%A4%A9%E6%B4%A5%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2%28%E5%A4%A9%E7%BA%AC%E8%B7%AF%E6%A0%A1%E5%8C%BA%29&amp;cp=qhrwxdtrzn47&amp;lvl=16.2" target="_blank" rel="noopener noreferrer">点击了解校区位置</a>
+        </div>
+      </div>
+    </div>
+    <a class="back-button" href="#campus-select">返回专业查询</a>
+    <div class="page-number">05 / 05</div>
+  </section>
+
+ 
+  <section class="page page-six" id="info-hub">
+    <div class="page-inner info-hub-inner">
+      <h2 class="info-heading">新生入学指南</h2>
+      <p class="info-subtitle">从报到到城市生活，先了解这些重要信息</p>
+      <div class="info-grid">
+        <a class="info-tile" href="#freshman-page" data-open-page="freshman-page">新生报到</a>
+        <a class="info-tile" href="#card-page" data-open-page="card-page">关于校园卡</a>
+        <a class="info-tile" href="#textbook-page" data-open-page="textbook-page">关于教材</a>
+        <a class="info-tile" href="#training-page" data-open-page="training-page">关于军训</a>
+        <a class="info-tile" href="#dorm-power-page" data-open-page="dorm-power-page">关于空调及宿舍用电</a>
+        <a class="info-tile" href="#tianjin-stage" data-open-page="tianjin-stage">关于天津</a>
+      </div>
+    </div>
+    <a class="back-button" href="#campus-select" data-return-page="campus-select">返回专业查询</a>
+    <div class="page-number">06 / 17</div>
+  </section>
+
+  <section class="page page-info optional-page" id="freshman-page" data-previous-page="info-hub" hidden>
+    <div class="page-inner">
+      <article class="info-panel">
+        <h2>新生报到</h2>
+        <p>如果您是新生，请留意学校通知的报道时间，报道地点基本不变，且有上图的一个地方专门给新生报到，您的导员和学长学姐都会在那里给您校园卡并为您登记基本信息，家长可以随您入校并搬生活用品到宿舍</p>
+        <a class="info-image-link" href="./freshman-report.png" target="_blank" rel="noopener noreferrer" aria-label="查看新生报到照片">
+          <img src="./freshman-report.png" alt="天津美术学院新生报到地点">
+        </a>
+      </article>
+    </div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">07 / 17</div>
+  </section>
+
+  <section class="page page-info optional-page" id="card-page" data-previous-page="info-hub" hidden>
+    <div class="page-inner"><article class="info-panel"><h2>关于校园卡</h2><p>校园卡用来洗澡、门禁、食堂、打水、吹风机……到时候会有一个APP（今日校园，在APP里缴费。校园卡丢了之后要去食堂机器那补办，30块钱补办一次</p></article></div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">08 / 17</div>
+  </section>
+
+  <section class="page page-info optional-page" id="textbook-page" data-previous-page="info-hub" hidden>
+    <div class="page-inner"><article class="info-panel"><h2>关于教材</h2><p>您在报到前不用太过着急购买教材，军训前或军训期间，您的辅导员会告诉您所需教材，您可在本校跳蚤群中购买二手或者在其他平台购买</p></article></div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">09 / 17</div>
+  </section>
+
+  <section class="page page-info optional-page" id="training-page" data-previous-page="info-hub" hidden>
+    <div class="page-inner"><article class="info-panel"><h2>关于军训</h2><p>开学军训是必须有的，此为<strong>必修课</strong>。除非您有先天性的疾病或身体缺陷，以及一些长久状态的身体障碍，否则无法免训。如骨折、突发疾病等等情况，可申请缓训，但你需要第二年和下一届的新生一起再补训。如果感冒生病，可以找辅导员请假，共三次机会，超过三次可能影响军训成绩，如果您实在不好受可以申请见习，不影响成绩。本校军训强度较低，建议您坚持下来，一定会有所收获的</p></article></div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">10 / 17</div>
+  </section>
+
+  <section class="page page-info optional-page" id="dorm-power-page" data-previous-page="info-hub" hidden>
+    <div class="page-inner"><article class="info-panel"><h2>关于空调及宿舍用电</h2><p>宿舍空调有租赁费＋电费，具体内容在宿舍一楼舍管阿姨对面的墙上，可以打电话询问，新生报到前三天空调一般来说是随便使用的，如果您不租赁空调的话会停用（不交电费也会）</p></article></div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+    <div class="page-number">11 / 17</div>
+  </section>
+
+  <section class="tianjin-stage optional-page transition-stage" id="tianjin-stage" data-previous-page="info-hub" data-next-page="tianjin-explore" hidden>
+    <div class="tianjin-viewport">
+      <div class="tianjin-layer tianjin-welcome" id="tianjinWelcome">
+        <div class="welcome">
+          <p class="eyebrow">WELCOME TO TIANJIN</p>
+          <h1>天津<span>欢迎您</span></h1>
+          <p>在海河与城市灯火之间，感受天津的从容与热情</p>
+        </div>
+      </div>
+      <article class="tianjin-layer story-box tianjin-story" id="tianjinStory" aria-live="polite">
+        <h2>天津</h2>
+        <p>天津市，简称津，中华人民共和国四大直辖市之一，地处华北平原东北部、渤海西岸，距离北京约120km，是首都的海上门户，素有九河下梢、天津卫之称，下辖16个市辖区，陆地面积约1.19万平方公里。</p>
+        <p>天津是相声之乡，茶馆文化浓厚。民俗技艺丰富：杨柳青木版年画、泥人张彩塑、风筝魏。</p>
+        <p>既有租界洋楼的洋气，又有市井胡同的烟火；工业底蕴深厚，港口发达，生活氛围松弛，本地人热情风趣。</p>
+        <p>标志地标有：五大道、意式风情街、天津之眼、天津电视塔、海河、世纪钟等。</p>
+        <p>欢迎您在得空的时候来天津逛逛！</p>
+      </article>
+      <a class="portal-link tianjin-detail-link" id="tianjinDetailLink" href="https://baike.baidu.com/item/%e5%a4%a9%e6%b4%a5%e5%b8%82/213824" target="_blank" rel="noopener noreferrer">点击查看天津详细介绍</a>
+      <div class="page-number" id="tianjinNumber">12 / 17</div>
+      <div class="tianjin-progress" aria-hidden="true"><span></span></div>
+    </div>
+    <a class="back-button" href="#info-hub" data-return-page="info-hub">返回新生入学指南</a>
+  </section>
+
+  <section class="page page-explore optional-page" id="tianjin-explore" data-previous-page="tianjin-stage" data-next-page="century-clock" hidden>
+    <div class="page-inner explore-inner">
+      <h2>想要了解怎样的天津？</h2>
+      <p>从一座钟、一座桥和一座摩天轮，继续认识这座城市</p>
+      <div class="explore-prompt">向下滚动，继续探索天津风景</div>
+    </div>
+    <a class="back-button" href="#tianjin-stage" data-return-page="tianjin-stage">返回天津介绍</a>
+    <div class="page-number">14 / 17</div>
+  </section>
+
+  <section class="page scenic-page optional-page" id="century-clock" data-previous-page="tianjin-explore" data-next-page="tianjin-eye" style="background-image:url('./century-clock.png')" hidden>
+    <div class="scene-title scene-title-front"><div class="scene-stack"><h2>世纪钟</h2><p>CENTURY CLOCK</p></div></div><div class="scene-subject scene-subject-clock" aria-hidden="true"></div>
+    <a class="back-button" href="#tianjin-explore" data-return-page="tianjin-explore">返回天津风景</a>
+    <div class="page-number">15 / 17</div>
+  </section>
+
+  <section class="page scenic-page optional-page" id="tianjin-eye" data-previous-page="century-clock" data-next-page="jiefang-bridge" style="background-image:url('./tianjin-eye-updated.png')" hidden>
+    <div class="scene-title"><div class="scene-stack"><h2>天津之眼</h2><p>TIANJIN EYE</p></div></div><div class="scene-subject scene-subject-eye" aria-hidden="true"></div>
+    <a class="back-button" href="#century-clock" data-return-page="century-clock">返回上一景</a>
+    <div class="page-number">16 / 17</div>
+  </section>
+
+  <section class="page scenic-page optional-page" id="jiefang-bridge" data-previous-page="tianjin-eye" style="background-image:url('./jiefang-bridge-updated.png')" hidden>
+    <div class="scene-title"><div class="scene-stack"><h2>解放桥</h2><p>JIEFANG BRIDGE</p></div></div><div class="scene-subject scene-subject-bridge" aria-hidden="true"></div>
+    <a class="back-button" href="#tianjin-eye" data-return-page="tianjin-eye">返回上一景</a>
+    <div class="page-number">17 / 17</div>
+  </section>  <script>
+    const majorForm = document.getElementById("majorForm");
+    const majorInput = document.getElementById("majorInput");
+    const majorResult = document.getElementById("majorResult");
+
+    const northMajors = [
+      "视觉传达设计", "环境设计", "产品设计", "服装与服饰设计",
+      "工艺美术", "艺术设计学", "历史建筑保护工程", "数字媒体艺术",
+      "动画", "摄影", "戏剧影视美术设计", "实验艺术", "跨媒体艺术", "科技艺术"
+    ];
+
+    const southMajors = [
+      "中国画", "书法学", "绘画", "雕塑", "文物保护与修复", "美术学", "艺术管理"
+    ];
+
+    function normalizeMajor(value) {
+      return value
+        .trim()
+        .replace(/^\s*\d+\s*[.、)、:：]?\s*/, "")
+        .replace(/\s+/g, "");
+    }
+
+    majorForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const value = normalizeMajor(majorInput.value);
+
+      if (!value) {
+        majorResult.textContent = "请输入你的专业名称。";
+        majorResult.style.color = "#ffd35c";
+        return;
+      }
+
+      const isNorth = northMajors.some((major) => value.includes(major));
+      const isSouth = southMajors.some((major) => value.includes(major));
+
+      if (isNorth) {
+        majorResult.textContent = "恭喜您，您已被北苑收录！";
+        majorResult.style.color = "#8ee6a8";
+      } else if (isSouth) {
+        majorResult.textContent = "恭喜您，您已被南苑收录！";
+        majorResult.style.color = "#8ee6a8";
+      } else {
+        majorResult.textContent = "暂未识别该专业，请检查输入内容。";
+        majorResult.style.color = "#ff9d9d";
+      }
+    });
+
+    const optionalPages = Array.from(document.querySelectorAll(".optional-page"));
+    const optionalPageLinks = document.querySelectorAll("[data-open-page]");
+    const introStage = document.getElementById("intro-stage");
+    const introWelcome = document.getElementById("introWelcome");
+    const introStory = document.getElementById("introStory");
+    const introProgress = document.querySelector(".intro-progress span");
+    const tianjinStage = document.getElementById("tianjin-stage");
+    const tianjinWelcome = document.getElementById("tianjinWelcome");
+    const tianjinStory = document.getElementById("tianjinStory");
+    const tianjinProgress = document.querySelector(".tianjin-progress span");
+    const tianjinDetailLink = document.getElementById("tianjinDetailLink");
+    const tianjinNumber = document.getElementById("tianjinNumber");
+    const transitionStages = [introStage, tianjinStage].filter(Boolean);
+    const slideDuration = 520;
+    const introRevealDuration = 760;
+    let switchingPage = false;
+    let lastWheelTime = 0;
+
+    function hideOptionalPages(exceptId = "") {
+      optionalPages.forEach((page) => { page.hidden = page.id !== exceptId; });
+    }
+
+    function stageBottom(stage) {
+      return stage.offsetTop + stage.offsetHeight - window.innerHeight;
+    }
+
+    function visibleTargets() {
+      return [introStage, document.getElementById("campus-select"),
+        document.getElementById("info-hub"), ...optionalPages.filter((page) => !page.hidden)]
+        .filter((page, index, all) => page && all.indexOf(page) === index);
+    }
+
+    function nearestTargetIndex(targets) {
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      targets.forEach((target, index) => {
+        const distance = Math.abs(target.getBoundingClientRect().top);
+        if (distance < closestDistance) { closestDistance = distance; closestIndex = index; }
+      });
+      return closestIndex;
+    }
+
+    function activeTransitionStage() {
+      return transitionStages.find((stage) => !stage.hidden &&
+        window.scrollY >= stage.offsetTop - 20 && window.scrollY <= stageBottom(stage) + 20);
+    }
+
+    function currentSection() {
+      const targets = visibleTargets();
+      return activeTransitionStage() || targets[nearestTargetIndex(targets)];
+    }
+
+    function viewportFor(page) {
+      return page.querySelector(":scope > .intro-viewport, :scope > .tianjin-viewport") || page;
+    }
+
+    function updateStage(stage, welcome, story, progressBar, detailLink, number) {
+      if (!stage || stage.hidden) return;
+      const range = Math.max(1, stage.offsetHeight - window.innerHeight);
+      const storyVisible = (window.scrollY - stage.offsetTop) / range >= 0.5;
+      welcome.style.opacity = storyVisible ? "0" : "1";
+      welcome.style.transform = "none";
+      welcome.style.filter = "none";
+      welcome.style.pointerEvents = storyVisible ? "none" : "auto";
+      welcome.inert = storyVisible;
+      welcome.setAttribute("aria-hidden", String(storyVisible));
+      story.style.opacity = storyVisible ? "1" : "0";
+      story.style.transform = "translate(-50%, -50%)";
+      story.style.filter = "none";
+      story.style.pointerEvents = storyVisible ? "auto" : "none";
+      story.inert = !storyVisible;
+      story.setAttribute("aria-hidden", String(!storyVisible));
+      if (progressBar) progressBar.style.transform = "scaleX(" + (storyVisible ? 1 : 0.04) + ")";
+      if (detailLink) {
+        detailLink.style.opacity = storyVisible ? "1" : "0";
+        detailLink.style.pointerEvents = storyVisible ? "auto" : "none";
+        detailLink.tabIndex = storyVisible ? 0 : -1;
+      }
+      if (number) number.textContent = storyVisible ? "13 / 17" : "12 / 17";
+    }
+
+    function updateTransitions() {
+      updateStage(introStage, introWelcome, introStory, introProgress, null, null);
+      updateStage(tianjinStage, tianjinWelcome, tianjinStory, tianjinProgress, tianjinDetailLink, tianjinNumber);
+    }
+
+    function takeSnapshot(source) {
+      const overlay = document.createElement("div");
+      overlay.className = "page-slide-snapshot";
+      overlay.setAttribute("aria-hidden", "true");
+      overlay.inert = true;
+      const copy = source.cloneNode(true);
+      copy.classList.remove("optional-page", "is-entering");
+      copy.classList.add("slide-copy");
+      copy.removeAttribute("id");
+      copy.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+      overlay.appendChild(copy);
+      document.body.appendChild(overlay);
+      const originals = source.querySelectorAll(".story-box, .info-panel");
+      copy.querySelectorAll(".story-box, .info-panel").forEach((panel, index) => {
+        panel.scrollTop = originals[index]?.scrollTop || 0;
+      });
+      return overlay;
+    }
+
+    async function slideTo(page, change, destination, direction = 1, mode = "slide") {
+      if (!page || switchingPage) return;
+      switchingPage = true;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let overlay;
+      let incoming;
+      const animations = [];
+      try {
+        if (!reducedMotion) overlay = takeSnapshot(viewportFor(currentSection()));
+        change();
+        window.scrollTo({ top: destination(), behavior: "auto" });
+        updateTransitions();
+        incoming = viewportFor(page);
+        if (!reducedMotion) {
+          const duration = mode === "intro-reveal" ? introRevealDuration : slideDuration;
+          if (mode === "intro-reveal") {
+            incoming.style.willChange = "opacity, transform";
+            animations.push(incoming.animate(
+              [
+                { opacity: 0, transform: "translateY(24px) scale(.985)" },
+                { opacity: 1, transform: "translateY(0) scale(1)" }
+              ],
+              { duration, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" }
+            ));
+            animations.push(overlay.animate(
+              [
+                { opacity: 1, transform: "scale(1)" },
+                { opacity: 0, transform: "scale(1.035)" }
+              ],
+              { duration, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" }
+            ));
+          } else {
+            incoming.style.willChange = "transform";
+            const incomingStart = direction > 0 ? "translateY(100%)" : "translateY(-100%)";
+            const outgoingEnd = direction > 0 ? "translateY(-100%)" : "translateY(100%)";
+            animations.push(incoming.animate(
+              [{ transform: incomingStart }, { transform: "translateY(0)" }],
+              { duration, easing: "cubic-bezier(.22,.75,.25,1)", fill: "both" }
+            ));
+            animations.push(overlay.animate(
+              [{ transform: "translateY(0)" }, { transform: outgoingEnd }],
+              { duration, easing: "cubic-bezier(.22,.75,.25,1)", fill: "both" }
+            ));
+          }
+          await Promise.allSettled(animations.map((animation) => animation.finished));
+        }
+      } finally {
+        animations.forEach((animation) => animation.cancel());
+        overlay?.remove();
+        if (incoming) incoming.style.removeProperty("will-change");
+        switchingPage = false;
+        updateTransitions();
+      }
+    }
+
+    function openPageById(id, direction = 1) {
+      const page = document.getElementById(id);
+      if (!page) return;
+      return slideTo(page, () => {
+        hideOptionalPages(page.id);
+        page.hidden = false;
+        history.replaceState(null, "", "#" + page.id);
+      }, () => page.offsetTop, direction);
+    }
+
+    function returnToPage(id, direction = -1) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      return slideTo(target, () => {
+        hideOptionalPages(target.classList.contains("optional-page") ? target.id : "");
+        target.hidden = false;
+        history.replaceState(null, "", "#" + target.id);
+      }, () => target.offsetTop, direction);
+    }
+
+    optionalPageLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        openPageById(link.dataset.openPage);
+      });
+    });
+    document.querySelectorAll("[data-return-page], a.back-button[href=\"#campus-select\"]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        returnToPage(link.dataset.returnPage || "campus-select");
+      });
+    });
+
+    function navigateByDirection(direction) {
+      if (switchingPage) return;
+      const stage = activeTransitionStage();
+      const targets = visibleTargets();
+      const current = stage || targets[nearestTargetIndex(targets)];
+      if (stage) {
+        if (direction > 0 && window.scrollY < stageBottom(stage) - 20) {
+          return slideTo(stage, () => {}, () => stageBottom(stage), direction, stage === introStage && direction > 0 ? "intro-reveal" : "slide");
+        }
+        if (direction < 0 && window.scrollY > stage.offsetTop + 20) {
+          return slideTo(stage, () => {}, () => stage.offsetTop, direction);
+        }
+      }
+      if (direction > 0 && current.dataset.nextPage) return openPageById(current.dataset.nextPage, direction);
+      if (direction < 0 && current.classList.contains("optional-page")) {
+        return returnToPage(current.dataset.previousPage || "campus-select", direction);
+      }
+      const index = targets.indexOf(current);
+      const nextIndex = Math.max(0, Math.min(targets.length - 1, index + direction));
+      if (nextIndex === index) return;
+      const next = targets[nextIndex];
+      return slideTo(next, () => {}, () => next === introStage && direction < 0 ? stageBottom(next) : next.offsetTop, direction);
+    }
+
+    window.addEventListener("wheel", (event) => {
+      if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      const direction = Math.sign(event.deltaY);
+      if (!direction) return;
+      const now = performance.now();
+      const gap = now - lastWheelTime;
+      lastWheelTime = now;
+      event.preventDefault();
+      if (switchingPage || gap < 120) return;
+      // Let long text scroll inside its own panel before leaving that page.
+      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel") : null;
+      if (panel && panel.scrollHeight > panel.clientHeight + 2) {
+        const canScroll = direction > 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2;
+        if (canScroll) { panel.scrollTop += direction * Math.max(80, Math.abs(event.deltaY)); return; }
+      }
+      navigateByDirection(direction);
+    }, { passive: false });
+    window.addEventListener("keydown", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (event.altKey || event.ctrlKey || event.metaKey || target?.closest("input, textarea, select, [contenteditable='true']")) return;
+      const direction = ["ArrowDown", "PageDown"].includes(event.key) ? 1 : ["ArrowUp", "PageUp"].includes(event.key) ? -1 : 0;
+      if (direction) { event.preventDefault(); navigateByDirection(direction); }
+    });
+    let touchStart = null;
+    window.addEventListener("touchstart", (event) => {
+      if (event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      touchStart = { x: touch.clientX, y: touch.clientY, time: performance.now() };
+    }, { passive: true });
+    window.addEventListener("touchend", (event) => {
+      if (!touchStart || event.changedTouches.length !== 1) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStart.x;
+      const dy = touch.clientY - touchStart.y;
+      const elapsed = performance.now() - touchStart.time;
+      touchStart = null;
+      if (Math.abs(dy) < 44 || Math.abs(dy) < Math.abs(dx) * 1.15 || elapsed > 700 || switchingPage) return;
+      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel") : null;
+      if (panel && panel.scrollHeight > panel.clientHeight + 2) {
+        const canScroll = dy < 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2;
+        if (canScroll) return;
+      }
+      navigateByDirection(dy < 0 ? 1 : -1);
+    }, { passive: true });
+    window.addEventListener("scroll", updateTransitions, { passive: true });
+    window.addEventListener("resize", updateTransitions);
+    window.addEventListener("orientationchange", () => setTimeout(updateTransitions, 120), { passive: true });
+    updateTransitions();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
