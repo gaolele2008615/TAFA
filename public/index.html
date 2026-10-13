@@ -237,9 +237,29 @@
     @media(max-width:680px){.site-notice{top:104px}.intro-welcome{padding-top:202px}.major-suggestions{max-height:200px}.opening-art svg{width:92vw}}
     @media(max-width:680px) and (max-height:650px){.intro-welcome{padding-top:176px}}
     @media(prefers-reduced-motion:reduce){.intro-running .opening-emblem{animation:none;transform:none}.intro-running .emblem-stroke{animation:none;stroke-dashoffset:0}.intro-running .opening-word-reveal{animation:none;transform:scaleX(1)}.intro-running .opening-art{animation-name:opening-gentle-exit}.intro-running .opening-background{animation-name:opening-gentle-focus}.intro-running #introWelcome{animation-name:opening-gentle-home}@keyframes opening-gentle-exit{0%,80%{opacity:1}100%{opacity:0}}@keyframes opening-gentle-focus{0%,80%{filter:blur(8px);transform:none}100%{filter:blur(0);transform:none}}@keyframes opening-gentle-home{0%,80%{opacity:0}100%{opacity:1}}}
+
+    /* One fixed notice remains visible on every main page, detail page and transition. */
+    .global-site-notice{position:fixed;top:18px;left:28px;z-index:2000;max-width:calc(100% - 56px);margin:0;padding:10px 14px;border:1px solid rgba(255,211,92,.45);border-radius:8px;background:rgba(3,24,43,.9);color:var(--yellow);font-size:clamp(12px,1.1vw,16px);font-weight:700;line-height:1.5;text-align:left;letter-spacing:.02em;text-shadow:0 2px 6px rgba(0,0,0,.5);pointer-events:none}
+    .site-notice.reading-notice{top:74px}
+    .reading-notice small{margin-top:0}
+    .back-button{top:18px;left:auto;right:28px}
+    .intro-story,.tianjin-story{max-height:calc(100svh - 136px)}
+    .intro-pending:not(.intro-running) .global-site-notice{visibility:hidden}
+    .intro-running .global-site-notice{z-index:3002;animation:opening-home 5s linear both}
+    @media(max-width:680px){
+      .global-site-notice{top:12px;left:16px;max-width:calc(100% - 32px);padding:8px 10px;font-size:11px}
+      .back-button{top:62px;right:16px;left:auto;padding:9px 12px;font-size:12px}
+      .author-credit{top:64px}
+      .site-notice.reading-notice{top:138px}
+      .page .page-inner,#north-campus .page-inner{padding-top:124px}
+      .north-guide-scroll{max-height:calc(100svh - 186px)}
+      .info-panel,.life-panel{max-height:calc(100svh - 190px)}
+    }
+    @media(prefers-reduced-motion:reduce){.intro-running .global-site-notice{animation-name:opening-gentle-home}}
   </style>
 </head>
 <body>
+  <aside class="global-site-notice" aria-label="网站声明">注意！此网站并非天津美术学院官方网站！</aside>
   <div class="opening-animation" id="openingAnimation" aria-hidden="true">
     <div class="opening-background"></div>
     <div class="opening-art">
@@ -275,7 +295,7 @@
   <section class="intro-stage" id="intro-stage">
     <div class="intro-viewport">
       <div class="intro-layer intro-welcome" id="introWelcome">
-        <div class="site-notice">注意！此网站并非天津美术学院官方网站！<small>建议使用PC端阅读，或手机使用浏览器打开阅读</small></div>
+        <div class="site-notice reading-notice"><small>建议使用PC端阅读，或手机使用浏览器打开阅读</small></div>
         <div class="author-credit"><span>高铭昊-作</span><span>感谢c302全体舍友支持</span><span>持续优化中</span></div>
         <div class="welcome">
           <p class="eyebrow">Tianjin Academy of Fine Arts</p>
