@@ -237,6 +237,7 @@
     @media(max-width:680px) and (max-height:650px){.intro-welcome{padding-top:176px}}
     @media(prefers-reduced-motion:reduce){.intro-running .opening-emblem{animation:none;transform:none}.intro-running .emblem-stroke{animation:none;stroke-dashoffset:0}.intro-running .opening-word-reveal{animation:none;transform:scaleX(1)}.intro-running .opening-art{animation-name:opening-gentle-exit}.intro-running .opening-background{animation-name:opening-gentle-focus}.intro-running #introWelcome{animation-name:opening-gentle-home}@keyframes opening-gentle-exit{0%,80%{opacity:1}100%{opacity:0}}@keyframes opening-gentle-focus{0%,80%{filter:blur(8px);transform:none}100%{filter:blur(0);transform:none}}@keyframes opening-gentle-home{0%,80%{opacity:0}100%{opacity:1}}}
   </style>
+  <link rel="stylesheet" href="./board.css">
 </head>
 <body>
   <div class="opening-animation" id="openingAnimation" aria-hidden="true">
@@ -386,7 +387,7 @@
     <div class="page-inner info-hub-inner">
       <h2 class="info-heading">新生入学指南</h2>
       <p class="info-subtitle">从报到到城市生活，先了解这些重要信息</p>
-      <div class="info-grid">
+      <div class="guide-scroll" tabindex="0" aria-label="入学指南与留言板"><div class="info-grid">
         <a class="info-tile" href="#freshman-page" data-open-page="freshman-page">新生报到</a>
         <a class="info-tile" href="#card-page" data-open-page="card-page">关于校园卡</a>
         <a class="info-tile" href="#textbook-page" data-open-page="textbook-page">关于教材</a>
@@ -394,6 +395,21 @@
         <a class="info-tile" href="#dorm-power-page" data-open-page="dorm-power-page">关于空调及宿舍用电</a>
         <a class="info-tile" href="#dorm-guide" data-open-page="dorm-guide">关于宿舍</a>
         <a class="info-tile" href="#tianjin-stage" data-open-page="tianjin-stage">关于天津</a>
+      </div>
+
+      <section class="board-widget" id="messageBoard" aria-labelledby="boardTitle">
+        <div class="board-header"><h3 id="boardTitle" tabindex="-1">留言板</h3><span class="board-connection" id="boardConnection" data-online="false">正在连接…</span></div>
+        <p class="board-description">留一句话，和下一位天美同学打个招呼。每个浏览器每天可留言两次（北京时间），每条留言可点赞一次。请文明交流。</p>
+        <form id="boardForm">
+          <p class="board-identity" id="boardIdentity">点击输入框，先留下你的名字</p>
+          <textarea id="boardText" maxlength="500" placeholder="写下你的校园感受、建议，或一句问候…" aria-label="留言内容" readonly></textarea>
+          <div class="board-compose-footer"><span class="board-counter" id="boardCounter">0 / 500</span><button class="board-submit" id="boardSubmit" type="submit" disabled>确定</button></div>
+        </form>
+        <p class="board-feedback" id="boardFeedback" role="status"></p>
+        <div class="board-list-heading"><span id="boardCount">大家的留言 · 0</span><small>按点赞数排序</small></div>
+        <div class="board-empty" id="boardEmpty">还没有留言，来留下第一句话吧。</div>
+        <ol class="board-list" id="boardList" aria-label="按点赞数排序的留言"></ol>
+      </section>
       </div>
     </div>
     <a class="back-button" href="#campus-select" data-return-page="campus-select">返回专业查询</a>
@@ -755,8 +771,8 @@
       copy.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
       overlay.appendChild(copy);
       document.body.appendChild(overlay);
-      const originals = source.querySelectorAll(".story-box, .info-panel, .north-guide-scroll");
-      copy.querySelectorAll(".story-box, .info-panel, .north-guide-scroll").forEach((panel, index) => {
+      const originals = source.querySelectorAll(".story-box, .info-panel, .north-guide-scroll, .guide-scroll");
+      copy.querySelectorAll(".story-box, .info-panel, .north-guide-scroll, .guide-scroll").forEach((panel, index) => {
         panel.scrollTop = originals[index]?.scrollTop || 0;
       });
       return overlay;
@@ -910,6 +926,7 @@
     }
 
     window.addEventListener("wheel", (event) => {
+      if (document.getElementById("nameDialog")?.open || (event.target instanceof Element && event.target.closest(".board-widget"))) return;
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
       const direction = Math.sign(event.deltaY);
       if (!direction) return;
@@ -920,7 +937,7 @@
       event.preventDefault();
       if (introPlaying || switchingPage) return;
       // Let long text scroll inside its own panel before leaving that page.
-      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel, .north-guide-scroll") : null;
+      const panel = event.target instanceof Element ? event.target.closest(".story-box, .info-panel, .north-guide-scroll, .guide-scroll") : null;
       if (panel && panel.scrollHeight > panel.clientHeight + 2) {
         const canScroll = direction > 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2;
         if (canScroll) { panel.scrollTop += direction * Math.max(80, Math.abs(event.deltaY)); return; }
@@ -929,11 +946,12 @@
       navigateByDirection(direction);
     }, { passive: false });
     window.addEventListener("keydown", (event) => {
+      if (document.getElementById("nameDialog")?.open || (event.target instanceof Element && event.target.closest(".board-widget"))) return;
       const target = event.target instanceof Element ? event.target : null;
       if (event.altKey || event.ctrlKey || event.metaKey || target?.closest("input, textarea, select, [contenteditable='true']")) return;
       const direction = ["ArrowDown", "PageDown"].includes(event.key) ? 1 : ["ArrowUp", "PageUp"].includes(event.key) ? -1 : 0;
       if (direction) {
-        const panel = target?.closest(".story-box, .info-panel, .north-guide-scroll");
+        const panel = target?.closest(".story-box, .info-panel, .north-guide-scroll, .guide-scroll");
         if (panel && (direction > 0 ? panel.scrollTop < panel.scrollHeight - panel.clientHeight - 2 : panel.scrollTop > 2)) return;
         event.preventDefault(); navigateByDirection(direction);
       }
@@ -1007,6 +1025,19 @@
     window.addEventListener("resize", updateTransitions);
     updateTransitions();
   </script>
+
+  <dialog class="name-dialog" id="nameDialog" aria-labelledby="nameTitle">
+    <form id="nameForm">
+      <h2 id="nameTitle">您的名字是？</h2>
+      <p>这个名字会和你的留言一起展示给大家。</p>
+      <label for="visitorName">你的名字</label>
+      <input id="visitorName" name="name" maxlength="24" placeholder="请输入名字或昵称" autocomplete="nickname" required>
+      <p class="name-error" id="nameError" role="status"></p>
+      <div class="name-actions"><button class="name-cancel" type="button" id="nameCancel">暂不留言</button><button class="name-submit" type="submit" id="nameSubmit">继续留言</button></div>
+    </form>
+  </dialog>
+  <script src="./moderation.js"></script>
+<script src="./board.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,1 @@
+{"framework":null,"outputDirectory":"public","regions":["iad1"],"functions":{"api/[action].js":{"maxDuration":60}}}
