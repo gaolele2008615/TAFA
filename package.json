@@ -1,1 +1,5 @@
-{"name":"tafa-message-board","private":true,"version":"1.0.0","engines":{"node":"24.x"},"dependencies":{"@neondatabase/serverless":"^1.0.2"}}
+{
+  "name": "tafa-campus-website",
+  "private": true,
+  "version": "1.1.0"
+}
