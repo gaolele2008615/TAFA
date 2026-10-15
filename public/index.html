@@ -359,17 +359,7 @@ a:focus-visible,button:focus-visible{outline-color:#55555c}
 <style id="requested-refinements">
 /* Requested refinements: two welcome palettes, rounded panels and hover enlargement. */
 body:is([data-ui-active-page="intro-stage"],[data-ui-active-page="tianjin-stage"]){--yellow:#ffd35c}
-body[data-ui-active-page="tianjin-stage"] .site-header{background:#020f19f7;border-bottom-color:#a1c0d01f;color:#eef5f9}
-body[data-ui-active-page="tianjin-stage"] .brand{color:#f4f8fa}
-body[data-ui-active-page="tianjin-stage"] .brand img{filter:invert(1);mix-blend-mode:screen}
-body[data-ui-active-page="tianjin-stage"] :is(.brand>span,.header-clock span){color:#97adbb}
-body[data-ui-active-page="tianjin-stage"] .header-clock time{color:#eef5f9}
-body[data-ui-active-page="tianjin-stage"] .site-header nav a{color:#97aab6}
-body[data-ui-active-page="tianjin-stage"] .site-header nav a:is(:hover,[aria-current]){color:#fff}
-body[data-ui-active-page="tianjin-stage"] .site-header nav a[aria-current]:after{background:#c2d4de}
-body[data-ui-active-page="tianjin-stage"] .global-site-notice{background:#032031f5;color:#b8c9d3;border-bottom-color:#90b1c529}
-body[data-ui-active-page="tianjin-stage"] .notice-label{color:#e4f0f5}
-body[data-ui-active-page="tianjin-stage"] .notice-squares{color:#658394}
+
 .hero-slideshow{background:#061a28}
 .hero-slideshow:after{background:linear-gradient(0deg,#020e17e8,transparent 80%),linear-gradient(90deg,#03132066,#03132012)}
 .intro-stage{background:#020e17}
@@ -417,6 +407,10 @@ body[data-ui-active-page="tianjin-stage"] .chapter-dock button{color:#d1e4f1}
  :is(.overview-stats a,.overview-grid>a,.campus-card,.campus-life-card,.info-tile,.city-card,.info-image-link,.map-link,.primary-button,.back-button,.major-form button,.chapter-dock button,#carouselPause,.carousel-dots button),#campus-flow.reveal-ready .scroll-reveal,.school-page.reveal-ready .scroll-reveal{transition:none}
 }
 
+</style>
+<style id="overview-label-emphasis">
+.overview-stats strong{font-size:clamp(20px,1.9vw,28px);line-height:1.35}
+@media(max-width:680px){.overview-stats strong{font-size:clamp(16px,4.4vw,20px)}}
 </style>
 </head>
 <body>
@@ -478,7 +472,7 @@ body[data-ui-active-page="tianjin-stage"] .chapter-dock button{color:#d1e4f1}
 
 <div aria-hidden="true" class="intro-progress"><span></span></div>
 </div>
-</section><section class="school-page snap-page" hidden="" id="school-story"><div class="ueg-overview"><div class="overview-status"><div><span class="section-kicker">YOUR CAMPUS JOURNEY</span><h2>从这里，<br/>认识天美</h2><p>让校园生活的每一步，都更清晰</p></div><div class="overview-date"><span class="section-kicker">TIANJIN / CHINA</span><time id="localDate">2026.10.14</time><p>校园信息持续优化中</p></div></div><div class="overview-stats"><a data-ui-nav="campus-select" href="#campus-select"><small>CAMPUS</small><strong>02</strong><span>南苑与北苑 ↗</span></a><a data-ui-nav="info-hub" href="#info-hub"><small>FRESHMAN GUIDE</small><strong>06</strong><span>入学准备主题 ↗</span></a><a data-ui-nav="north-campus" href="#north-campus"><small>CAMPUS LIFE</small><strong>04</strong><span>北苑生活专题 ↗</span></a><a data-ui-nav="tianjin-stage" href="#tianjin-stage"><small>CITY DISCOVERY</small><strong>03</strong><span>天津地标风景 ↗</span></a></div><div class="ueg-heading"><h2>校园概览</h2><span>TAFA STUDENT GUIDE</span></div><div class="overview-grid"><a data-ui-nav="campus-select" href="#campus-select"><span class="overview-icon">◎</span><h3>认识校区</h3><small>Explore the campus</small><p>输入你的专业，了解南苑与北苑，找到属于你的校园生活。</p><span class="overview-link">查看校区 →</span></a><a data-ui-nav="info-hub" href="#info-hub"><span class="overview-icon">◇</span><h3>入学准备</h3><small>A good beginning</small><p>从新生报到、校园卡，到教材、军训和宿舍，提前做好准备。</p><span class="overview-link">阅读指南 →</span></a><a data-ui-nav="north-campus" href="#north-campus"><span class="overview-icon">⌂</span><h3>校园日常</h3><small>Life at TAFA</small><p>食堂、快递、附近美味与住宿环境，一起了解校园里的日常。</p><span class="overview-link">了解生活 →</span></a><a data-ui-nav="tianjin-stage" href="#tianjin-stage"><span class="overview-icon">✧</span><h3>发现天津</h3><small>Beyond the campus</small><p>走进海河两岸与城市街巷，在艺术之外，遇见这座城市。</p><span class="overview-link">探索天津 →</span></a></div></div><article aria-live="polite" class="school-bridge" id="introStory">
+</section><section class="school-page snap-page" hidden="" id="school-story"><div class="ueg-overview"><div class="overview-status"><div><span class="section-kicker">YOUR CAMPUS JOURNEY</span><h2>从这里，<br/>认识天美</h2><p>让校园生活的每一步，都更清晰</p></div><div class="overview-date"><span class="section-kicker">TIANJIN / CHINA</span><time id="localDate">2026.10.14</time><p>校园信息持续优化中</p></div></div><div class="overview-stats"><a data-ui-nav="campus-select" href="#campus-select"><small>CAMPUS</small><strong>南苑与北苑 ↗</strong><span>02</span></a><a data-ui-nav="info-hub" href="#info-hub"><small>FRESHMAN GUIDE</small><strong>入学准备主题 ↗</strong><span>06</span></a><a data-ui-nav="north-campus" href="#north-campus"><small>CAMPUS LIFE</small><strong>北苑生活专题 ↗</strong><span>04</span></a><a data-ui-nav="tianjin-stage" href="#tianjin-stage"><small>CITY DISCOVERY</small><strong>天津地标风景 ↗</strong><span>03</span></a></div><div class="ueg-heading"><h2>校园概览</h2><span>TAFA STUDENT GUIDE</span></div><div class="overview-grid"><a data-ui-nav="campus-select" href="#campus-select"><span class="overview-icon">◎</span><h3>认识校区</h3><small>Explore the campus</small><p>输入你的专业，了解南苑与北苑，找到属于你的校园生活。</p><span class="overview-link">查看校区 →</span></a><a data-ui-nav="info-hub" href="#info-hub"><span class="overview-icon">◇</span><h3>入学准备</h3><small>A good beginning</small><p>从新生报到、校园卡，到教材、军训和宿舍，提前做好准备。</p><span class="overview-link">阅读指南 →</span></a><a data-ui-nav="north-campus" href="#north-campus"><span class="overview-icon">⌂</span><h3>校园日常</h3><small>Life at TAFA</small><p>食堂、快递、附近美味与住宿环境，一起了解校园里的日常。</p><span class="overview-link">了解生活 →</span></a><a data-ui-nav="tianjin-stage" href="#tianjin-stage"><span class="overview-icon">✧</span><h3>发现天津</h3><small>Beyond the campus</small><p>走进海河两岸与城市街巷，在艺术之外，遇见这座城市。</p><span class="overview-link">探索天津 →</span></a></div></div><article aria-live="polite" class="school-bridge" id="introStory">
 <h2>天津美术学院</h2>
 <p>天津美术学院（Tianjin Academy of Fine Arts），简称“天美”、“<a href="https://baike.baidu.com/item/%E5%A4%A9%E6%B4%A5%E7%BE%8E%E9%99%A2/5290070?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">天津美院</a>”，位于<a href="https://baike.baidu.com/item/%E5%A4%A9%E6%B4%A5%E5%B8%82/213824?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">天津市</a>，是中国最具影响的九所美术院校之一、中国北方重要的美术教育和美术研究中心，为中国独立设置的八所美术学院之一，为国家级人才培养模式创新实验区。</p>
 <p>学院前身是1906年由中国近代教育家<a href="https://baike.baidu.com/item/%E5%82%85%E5%A2%9E%E6%B9%98/8859049?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">傅增湘</a>先生创办的<a href="https://baike.baidu.com/item/%E5%8C%97%E6%B4%8B%E5%A5%B3%E5%B8%88%E8%8C%83%E5%AD%A6%E5%A0%82/5321696?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">北洋女师范学堂</a>。新中国成立后，学校经过多次调整、易名，经历了<a href="https://baike.baidu.com/item/%E6%B2%B3%E5%8C%97%E5%B8%88%E8%8C%83%E5%AD%A6%E9%99%A2/3042976?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">河北师范学院</a>、河北天津师范学院、河北艺术师范学院、<a href="https://baike.baidu.com/item/%E6%B2%B3%E5%8C%97%E7%BE%8E%E6%9C%AF%E5%AD%A6%E9%99%A2/6775402?fromModule=lemma_inlink" rel="noopener noreferrer" target="_blank">河北美术学院</a>、天津艺术学院等，1980年正式更名为天津美术学院。2008年，学院获批国家级人才培养模式创新实验区。2025年，获批推免资格。</p>
